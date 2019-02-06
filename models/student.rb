@@ -42,4 +42,9 @@ class Student
     return result
   end
 
+  def Student.delete_all()
+    sql = "DELETE FROM students"
+    SqlRunner.run(sql)
+  end
+
 end

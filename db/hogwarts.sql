@@ -11,6 +11,6 @@ CREATE TABLE students(
 
 CREATE TABLE houses(
   id SERIAL4 PRIMARY KEY,
-  name VARCHAR(255),
-  logo NVARCHAR(MAX) 
+  name VARCHAR(255)
+  -- logo NVARCHAR(MAX),
 );

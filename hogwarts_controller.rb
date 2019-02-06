@@ -3,6 +3,7 @@ require('sinatra/contrib/all')
 require('pry-byebug')
 
 require_relative('models/student.rb')
+require_relative('models/house.rb')
 also_reload('models/*')
 
 get '/hogwarts/student-index' do
@@ -18,4 +19,9 @@ post '/hogwarts/student-index' do
   @student = Student.new(params)
   @student.save()
   erb(:create)
+end
+
+get '/hogwarts/house-index' do
+  @houses = House.all()
+  erb(:house_index)
 end

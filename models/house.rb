@@ -3,20 +3,20 @@ require_relative('../db/sql_runner')
 class House
 
   attr_reader :id
-  attr_accessor :name, :logo
+  attr_accessor :name
 
   def initialize( options )
     @id = options['id'].to_i
     @name = options['name']
-    @logo = options['logo']
+    # @logo = options['logo']
   end
 
   def save()
     sql = "INSERT INTO houses
-    (name, logo)
-    VALUES ($1, $2)
+    (name)
+    VALUES ($1)
     RETURNING *"
-    values = [@name, @logo]
+    values = [@name]
     house = SqlRunner.run(sql, values)
     @id = house.first['id'].to_i
   end
@@ -24,7 +24,7 @@ class House
   def House.all()
     sql = "SELECT * FROM houses"
     houses = SqlRunner.run(sql)
-    result = houses.map { |house| Houses.new(house)}
+    result = houses.map { |house| House.new(house)}
     return result
   end
 
@@ -34,6 +34,11 @@ class House
     houses = SqlRunner.run(sql, values)
     result = House.new(houses.first)
     return result
+  end
+
+  def House.delete_all()
+    sql = "DELETE FROM houses"
+    SqlRunner.run(sql)
   end
 
 end
