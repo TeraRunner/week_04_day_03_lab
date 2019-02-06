@@ -11,7 +11,7 @@ get '/hogwarts/student-index' do
   erb(:student_index)
 end
 
-get '/hogwarts/new' do
+get '/hogwarts/student-new' do
   erb(:new)
 end
 

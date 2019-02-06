@@ -8,7 +8,6 @@ class House
   def initialize( options )
     @id = options['id'].to_i
     @name = options['name']
-    # @logo = options['logo']
   end
 
   def save()
@@ -39,6 +38,11 @@ class House
   def House.delete_all()
     sql = "DELETE FROM houses"
     SqlRunner.run(sql)
+  end
+
+  def House.map_items(data)
+    result = data.map{|house| House.new(house)}
+    return result
   end
 
 end
